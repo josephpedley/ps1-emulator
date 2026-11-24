@@ -1,5 +1,17 @@
 #include "interconnect.h"
+#include "bios.h"
+#include "common/bytes.h"
+
 #include <stdint.h>
+#include <stdlib.h>
+#include <stdio.h>
+#include <inttypes.h>
+
+
+#define BIOS_START (0xbfc00000)
+
+static const struct memory_range BIOS_RANGE = {.start = BIOS_START, 
+                                               .length = BIOS_SIZE};
 
 bool memory_range_contains(struct memory_range* range, uint32_t address, uint32_t* offset)
 {
@@ -10,4 +22,17 @@ bool memory_range_contains(struct memory_range* range, uint32_t address, uint32_
        return true;
    }
    return false;
+}
+
+uint32_t load32(const struct interconnect* interconnect, uint32_t address)
+{
+    uint32_t offset;
+
+    if (memory_range_contains(&BIOS_RANGE, address, &offset))
+    {
+        return read_u32_le(&interconnect->bios.data[offset]);
+    }
+    
+    fprintf(stderr, "Unhandled load32 at address 0x%08" PRIx32 "\n", address);
+    exit(1);
 }

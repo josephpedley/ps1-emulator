@@ -1,5 +1,7 @@
 #pragma once 
 
+#include "bios.h"
+
 #include <stdint.h>
 #include <stdbool.h>
 
@@ -12,8 +14,10 @@ struct memory_range
 // takes a range and an address and returns the offset in the range the address is at.
 bool memory_range_contains(struct memory_range* range, uint32_t address, uint32_t* offset);
 
+struct interconnect
+{
+    struct Bios bios;
 
+};
 
-
-
-
+uint32_t load32(const struct interconnect* interconnect, uint32_t address);
