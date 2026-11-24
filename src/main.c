@@ -4,16 +4,25 @@
 
 #include "bios.h"
 #include "interconnect.h"
+#include "cpu.h"
 
 int main()
 {
-    struct interconnect interconnect;
+    static struct CPU cpu;
+    static struct interconnect interconnect;
 
-    if (!load_bios_image(&interconnect.bios, "ps_files/SCPH1001.BIN"))
+    if (!load_bios_image(&interconnect.bios, "ps_files/SCPH1001.BIN")) //TODO pass as cmdline arg
     {
         return 1;
     }
 
-    uint32_t first_word = load_bios_word(&interconnect.bios, 0);
-    uint32_t second_word = load32(&interconnect, 0xbfc00004);
+    cpu_reset(&cpu, &interconnect);
+
+    while (1)
+    {
+        cpu_step(&cpu);
+    }
+
+    
+
 }
