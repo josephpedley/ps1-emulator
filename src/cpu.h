@@ -1,6 +1,7 @@
 #pragma once
 
 #include "interconnect.h"
+
 #include <stdint.h>
 
 struct CPU

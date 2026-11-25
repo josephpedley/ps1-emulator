@@ -1,9 +1,11 @@
 #include "cpu.h"
+
 #include "interconnect.h"
+
+#include <inttypes.h>
 #include <stdint.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <inttypes.h>
 
 #define RESET_VECTOR (0xbfc00000)
 

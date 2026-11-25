@@ -1,9 +1,9 @@
-#pragma once 
+#pragma once
 
 #include "bios.h"
 
-#include <stdint.h>
 #include <stdbool.h>
+#include <stdint.h>
 
 struct memory_range
 {
@@ -17,7 +17,6 @@ bool memory_range_contains(struct memory_range* range, uint32_t address, uint32_
 struct interconnect
 {
     struct Bios bios;
-
 };
 
 uint32_t load32(const struct interconnect* interconnect, uint32_t address);
