@@ -1,5 +1,6 @@
 #include "cpu.h"
 
+#include "instructions.h"
 #include "interconnect.h"
 
 #include <inttypes.h>
@@ -17,6 +18,10 @@ void cpu_reset(struct CPU* cpu, struct interconnect* interconnect)
 
 void cpu_decode(struct CPU* cpu, uint32_t instruction)
 {
+    switch (get_opcode(instruction)) 
+    {
+        case (0x0F):
+    }
     fprintf(stderr, "Unhandled instruction 0x%08" PRIx32 " at 0x%08" PRIx32 "\n", instruction,
             cpu->pc - 4);
     exit(1);
