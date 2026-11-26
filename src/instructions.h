@@ -1,6 +1,5 @@
 #pragma once
 
-#include <cstdint>
 #include <stdint.h>
 
 static inline uint32_t get_opcode(uint32_t instruction) {
